@@ -4,195 +4,150 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamen Papir Noznice</title>
-    <script src="jquery-3.6.1.min.js"></script>
+    <title>jquery - Kamen Paper Noze</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
+
+<style>
+    div{
+        margin: 10px;
+    }
+
+    .container{
+        text-align: center;
+    }
+
+    body{
+        background: rgb(22, 22, 22);
+    }
+
+    *{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h2{
+        color: white;
+    }
+
+    button{
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    #select{
+        display: none;
+    }
+</style>
+
+<script>
+
+    let player;
+    let pc;
+    let player2;
+
+$(document).ready(function(){
+  $("#start").click(function(){
+    
+    console.log("PLAY");
+
+    $("#start").css('display', 'none');
+    $('#select').css('display', 'block');
+
+  });
+
+  $("#k").click(function(){
+        player = "K";
+        console.log('hrac:' + player);
+    });
+
+    $("#p").click(function(){
+        player = "P";
+        console.log('hrac:' + player);
+    });
+
+    $("#n").click(function(){
+        player = "N";
+        console.log('hrac:' + player);
+    });
+
+  $(".selectbtn").click(function(){
+
+    console.log("SELECT");
+
+    pc = Math.floor(Math.random() * 3);
+    console.log(pc + 1);
+
+    if(pc + 1 == 1){
+        player2 = "K";
+    }
+    if(pc + 1 == 2){
+        player2 = "P";
+    }
+    if(pc + 1 == 3){
+        player2 = "N";
+    }
+
+    console.log('botko:' + player2);
+
+    if(player == "K" && player2 == "K"){
+        console.log('remiza');
+    }
+
+    if(player == "P" && player2 == "P"){
+        console.log('remiza');
+    }
+
+    if(player == "N" && player2 == "N"){
+        console.log('remiza');
+    }
+
+    // REMIZA UP
+
+    if(player == "K" && player2 == "N"){
+        console.log('player WIN');
+    }
+
+    if(player == "P" && player2 == "K"){
+        console.log('player WIN');
+    }
+
+    if(player == "N" && player2 == "P"){
+        console.log('player WIN');
+    }
+
+    // HRAC VYHRA UP
+
+    if(player == "P" && player2 == "N"){
+        console.log('player2 WIN');
+    }
+
+    if(player == "N" && player2 == "K"){
+        console.log('player2 WIN');
+    }
+
+    if(player == "K" && player2 == "P"){
+        console.log('player2 WIN');
+    }
+
+    // BOTKO VYHRA UP
+
+
+  });
+
+});
+
+</script>
+
 <body>
-
-    <style>
-        h6{
-            margin: 0;
-            font-size: 22px;
-        }
-
-        h3{
-            font-size: 28px;
-        }
-
-        *{
-            font-family: Arial, Helvetica, sans-serif;
-            
-        }
-
-        body{
-            background:rgb(36, 36, 36);
-        }
-
-        div{
-            color: white;
-            background: rgb(22, 22, 22);
-            width: fit-content;
-            padding: 20px 60px;
-            border-radius: 5px;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        button{
-            font-size: 32px;
-            background: green;
-            color: white;
-            outline: none;
-            border: none;
-            padding: 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-        }
-
-        button:hover{
-            background: rgb(0, 97, 0);
-        }
-
-        h2{
-            background: rgba(160, 160, 160, 0.075);
-            padding: 10px;
-            border-radius: 3px;
-        }
-    </style>
-
-    <div>
-
-        <h3>Pravidla:</h3><br>
-            
-        <h6>Kamen > Noznice (kamen vyhra)</h6><br>
-        <h6>Kamen < Papier (papier vyhra)</h6><br>
-        <h6>Noznice > Papier (Noznice vyhraju)</h6><br>
-            
-        <h6>Kamen = K, Papier = P, Noznice = N</h6><br>
-            
-
-        <button onclick="gamestart();">Spustit hru</button>
-        
-
-        <h2>Score: <span id="score-id">0</span></h2>
+    <div class="container">
+        <button id="start">Start Game</button>
+        <div id="select">
+            <h2>Zvol si svoj predmet</h2>
+            <button class="selectbtn" id="k">kamen</button>
+            <button class="selectbtn" id="p">papier</button>
+            <button class="selectbtn" id="n">noznice</button>
+        </div>
     </div>
-
-    <script>
-
-
-        function gamestart(){
-
-            let scoreget = document.getElementById('score-id').textContent;
-
-            let player = prompt("Zadaj -> K / P / N");
-            console.log("----------------------------")
-            console.log("player: " + player)
-
-            if(player != "K" && player != "P" && player != "N"){
-                alert('Nastala chyba! Pravdepodobne zle zadana hodnota...')
-                console.log("Zle zadana hodnota (chyba)")
-
-                throw new FatalError("chyba");
-            }
-
-            let stats = {
-                kamen: 0,
-                papier: 0,
-                noznice: 0
-            };
-
-            const bot = Math.floor(Math.random() * 3) + 1
-            console.log(bot)
-
-            if(bot == 1){
-                var player2 = "K";
-            }
-            if(bot == 2){
-                var player2 = "P";
-            }
-            if(bot == 3){
-                var player2 = "N";
-            }
-            console.log("player2: " + player2)
-
-
-            if(player == "K" && player2 == "K"){
-                alert('REMIZA')
-                console.log("remiza")
-                stats.kamen = 2
-            }
-            if(player == "P" && player2 == "P"){
-                alert('REMIZA')
-                console.log("remiza")
-                stats.papier = 2
-            }
-            if(player == "N" && player2 == "N"){
-                alert('REMIZA')
-                console.log("remiza")
-                stats.noznice = 2
-            }
-
-            if(player == "K" && player2 == "P"){
-                alert('PREHRAL SI')
-                console.log("prehra")
-                stats.papier = 1
-                stats.kamen = 1
-            }
-            if(player == "K" && player2 == "N"){
-                alert('VYHRAL SI')
-                console.log("vyhra")
-                stats.kamen = 1
-                stats.noznice = 1
-
-                var score = parseInt(scoreget, 10);
-                document.getElementById("score-id").innerHTML = score + 1;
-                console.log(score + 1)
-            }
-
-            if(player == "P" && player2 == "K"){
-                alert('VYHRAL SI')
-                console.log("vyhra")
-                stats.papier = 1
-                stats.kamen = 1
-
-                var score = parseInt(scoreget, 10);
-                document.getElementById("score-id").innerHTML = score + 1;
-                console.log(score + 1)
-            }
-            if(player == "P" && player2 == "N"){
-                alert('PREHRAL SI')
-                console.log("prehra")
-                stats.papier = 1
-                stats.noznice = 1
-            }
-
-            if(player == "N" && player2 == "K"){
-                alert('PREHRAL SI')
-                console.log("prehra")
-                stats.noznice = 1
-                stats.kamen = 1
-            }
-            if(player == "N" && player2 == "P"){
-                alert('VYHRAL SI')
-                console.log("vyhra")
-                stats.papier = 1
-                stats.noznice = 1
-
-                var score = parseInt(scoreget, 10);
-                document.getElementById("score-id").innerHTML = score + 1;
-                console.log(score + 1)
-            }
-
-            console.log(stats)
-
-            console.log("----------------------------")
-        }
-
-
-    </script>
-
 </body>
+
 </html>
