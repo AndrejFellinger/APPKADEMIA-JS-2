@@ -121,3 +121,22 @@ input{
     padding: 15px;
     font-size: 18px;
 }
+
+#reset{
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    background: rgb(32, 0, 0);
+    border: none;
+
+}
+
+#reset:hover{
+    background-color: black;
+}
