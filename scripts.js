@@ -1,26 +1,26 @@
-let player;
-let pc;
-let player2;
+let player = null;
+let pc = null;
+let player2 = null;
 let counter1 = 0;
 
-let playername;
+let playername = null;
 let named = false;
 
 let playerscore = 0;
 let botscore = 0;
 
-function Remiza(){
+function remiza(){
     console.log('remiza');
-    $("#winner").text('Remiza');
-    $("#winner").css('color', 'yellow');
+    $("#result").text('Remiza');
+    $("#result").css('color', 'yellow');
     $("#history").append("<h4>" + counter1 + '. ' + playername + " - Remiza</h4>");
     checkscore();
 }
 
-function Vyhra(){
+function vyhra(){
     console.log('player WIN');
-    $("#winner").text('Vyhral si!');
-    $("#winner").css('color', 'green');
+    $("#result").text('Vyhral si!');
+    $("#result").css('color', 'green');
     $("#history").append("<h4>" + counter1 + '. ' + playername + " - Vyhra</h4>");
 
     playerscore ++;
@@ -28,10 +28,10 @@ function Vyhra(){
     checkscore();
 }
 
-function Prehra(){
+function prehra(){
     console.log('player2 WIN');
-    $("#winner").text('Prehral si!');
-    $("#winner").css('color', 'red');
+    $("#result").text('Prehral si!');
+    $("#result").css('color', 'red');
     $("#history").append("<h4>" + counter1 + '. ' + playername + " - Prehra</h4>");
 
     botscore ++;
@@ -79,6 +79,11 @@ $(document).ready(function(){
 
     $(".selectbtn").click(function(){
 
+        if (playername == "") {
+            return alert("zadaj meno")
+            // Funguje to az po druhom kliknuti. prvy krat ti to nic nenapise ale ani ta to nepusti dalej, po druhom cliku uz ti to hodi alert...
+        }
+
         playername = $("#player-name").val();
         if(playername != ""){
             
@@ -95,61 +100,61 @@ $(document).ready(function(){
             if(pc + 1 == 1){
                 player2 = "K";
             }
-            if(pc + 1 == 2){
+            else if(pc + 1 == 2){
                 player2 = "P";
             }
-            if(pc + 1 == 3){
+            else if(pc + 1 == 3){
                 player2 = "N";
             }
 
             console.log('botko:' + player2);
 
             if(player == "K" && player2 == "K"){
-                Remiza();
+                remiza();
                 $("#values").text(playername +': Kamen, Bot: Kamen');
             }
 
-            if(player == "P" && player2 == "P"){
-                Remiza();
+            else if(player == "P" && player2 == "P"){
+                remiza();
                 $("#values").text(playername +': Papier, Bot: Papier');
             }
 
-            if(player == "N" && player2 == "N"){
-                Remiza();
+            else if(player == "N" && player2 == "N"){
+                remiza();
                 $("#values").text(playername +': Noznice, Bot: Noznice');
             }
 
             // REMIZA UP
 
             if(player == "K" && player2 == "N"){
-                Vyhra();
+                vyhra();
                 $("#values").text(playername +': Kamen, Bot: Noznice');
             }
 
-            if(player == "P" && player2 == "K"){
-                Vyhra();
+            else if(player == "P" && player2 == "K"){
+                vyhra();
                 $("#values").text(playername +': Papier, Bot: Kamen');
             }
 
-            if(player == "N" && player2 == "P"){
-                Vyhra();
+            else if(player == "N" && player2 == "P"){
+                vyhra();
                 $("#values").text(playername +': Noznice, Bot: Papier');
             }
 
             // HRAC VYHRA UP
 
             if(player == "P" && player2 == "N"){
-                Prehra();
+                prehra();
                 $("#values").text(playername +': Papier, Bot: Noznice');
             }
 
-            if(player == "N" && player2 == "K"){
-                Prehra();
+            else if(player == "N" && player2 == "K"){
+                prehra();
                 $("#values").text(playername +': Noznice, Bot: Kamen');
             }
 
-            if(player == "K" && player2 == "P"){
-                Prehra();
+            else if(player == "K" && player2 == "P"){
+                prehra();
                 $("#values").text(playername +': Kamen, Bot: Papier');
             }
 
@@ -160,8 +165,6 @@ $(document).ready(function(){
             $("#status").css('display', 'block');
             $("#next").css('display', 'block');
 
-        }else{
-            alert("Nastav si meno")
         }
 
 
