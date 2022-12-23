@@ -42,8 +42,6 @@ function prehra(){
 function checkscore(){
     if(playerscore == 5){
         alert('Gratulujem! tvoje score je "5", Chces pokracovat dalej?')
-    }else{
-        // IDK PROSTE TO ZACALO FUNGOVAT KED SOM SEM DAL EMPTY ELSE...
     }
 }
 
@@ -78,11 +76,6 @@ $(document).ready(function(){
         });
 
     $(".selectbtn").click(function(){
-
-        if (playername == "") {
-            return alert("zadaj meno")
-            // Funguje to az po druhom kliknuti. prvy krat ti to nic nenapise ale ani ta to nepusti dalej, po druhom cliku uz ti to hodi alert...
-        }
 
         playername = $("#player-name").val();
         if(playername != ""){
@@ -124,7 +117,6 @@ $(document).ready(function(){
                 $("#values").text(playername +': Noznice, Bot: Noznice');
             }
 
-            // REMIZA UP
 
             if(player == "K" && player2 == "N"){
                 vyhra();
@@ -141,7 +133,6 @@ $(document).ready(function(){
                 $("#values").text(playername +': Noznice, Bot: Papier');
             }
 
-            // HRAC VYHRA UP
 
             if(player == "P" && player2 == "N"){
                 prehra();
@@ -158,13 +149,14 @@ $(document).ready(function(){
                 $("#values").text(playername +': Kamen, Bot: Papier');
             }
 
-            // BOTKO VYHRA UP
 
             $('#select').css('display', 'none');
             $("#player-name").css('display', 'none');
             $("#status").css('display', 'block');
             $("#next").css('display', 'block');
 
+        }else{
+            alert("Nastav si meno");
         }
 
 
