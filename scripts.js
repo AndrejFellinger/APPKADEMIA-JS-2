@@ -1,7 +1,6 @@
 let player = null;
 let comprandomnumber = null;
-let computer = null;
-let counter1 = 0;
+let counter = 0;
 
 let playername = null;
 let named = false;
@@ -13,7 +12,7 @@ function remiza(){
     console.log('remiza');
     $("#result").text('Remiza');
     $("#result").css('color', 'yellow');
-    $("#history").append("<h4>" + counter1 + '. ' + playername + " - Remiza</h4>");
+    $("#history").append("<h4>" + counter + '. ' + playername + " - Remiza</h4>");
     checkscore();
 }
 
@@ -21,7 +20,7 @@ function vyhra(){
     console.log('player WIN');
     $("#result").text('Vyhral si!');
     $("#result").css('color', 'green');
-    $("#history").append("<h4>" + counter1 + '. ' + playername + " - Vyhra</h4>");
+    $("#history").append("<h4>" + counter + '. ' + playername + " - Vyhra</h4>");
 
     playerscore ++;
     $("#player").text(playerscore);
@@ -32,12 +31,13 @@ function prehra(){
     console.log('computer WIN');
     $("#result").text('Prehral si!');
     $("#result").css('color', 'red');
-    $("#history").append("<h4>" + counter1 + '. ' + playername + " - Prehra</h4>");
+    $("#history").append("<h4>" + counter + '. ' + playername + " - Prehra</h4>");
 
     botscore ++;
     $("#bot").text(botscore);
     checkscore();
 }
+
 
 function checkscore(){
     if(playerscore == 5){
@@ -56,39 +56,49 @@ $(document).ready(function(){
 
     });
 
-$("#reset").click(function(){
-    location.reload();
-});
+    $("#next").click(function(){
+        $('#select').css('display', 'block');
+        $("#next").css('display', 'none');
+        $("#status").css('display', 'none');
+    });
 
-$("#k").click(function(){
-    player = "K";
-    console.log('hrac:' + player);
-});
+    $("#reset").click(function(){
+        location.reload();
+    });
 
-$("#p").click(function(){
-    player = "P";
-    console.log('hrac:' + player);
-});
+    $("#k").click(function(){
+        player = "K";
+        console.log('hrac:' + player);
+    });
 
-$("#n").click(function(){
-    player = "N";
-    console.log('hrac:' + player);
-});
+    $("#p").click(function(){
+        player = "P";
+        console.log('hrac:' + player);
+    });
 
-$(".selectbtn").click(function(){
+    $("#n").click(function(){
+        player = "N";
+        console.log('hrac:' + player);
+    });
+
+    $(".selectbtn").click(function(){
 
         playername = $("#player-name").val();
         
         if(playername == ""){
             return(alert('nastav si meno'));
 
-        }else{
+        }
+        else{
+
+            let computer = null;
+
             console.log("SELECT");
             $('#player-name-sc').text(playername);
             $('#scores').css('display', 'block');
             $('#history').css('display', 'block');
 
-            counter1 ++;
+            counter ++;
 
             comprandomnumber = Math.floor(Math.random() * 3);
             console.log(comprandomnumber);
@@ -121,7 +131,7 @@ $(".selectbtn").click(function(){
             }
 
 
-            if(player == "K" && computer == "N"){
+            else if(player == "K" && computer == "N"){
                 vyhra();
                 $("#values").text(playername +': Kamen, Bot: Noznice');
             }
@@ -137,7 +147,7 @@ $(".selectbtn").click(function(){
             }
 
 
-            if(player == "P" && computer == "N"){
+            else if(player == "P" && computer == "N"){
                 prehra();
                 $("#values").text(playername +': Papier, Bot: Noznice');
             }
@@ -160,12 +170,6 @@ $(".selectbtn").click(function(){
         }
 
 
-    });
-
-    $("#next").click(function(){
-        $('#select').css('display', 'block');
-        $("#next").css('display', 'none');
-        $("#status").css('display', 'none');
     });
 
 });
