@@ -5,6 +5,10 @@ let counter = 0;
 let playername = null;
 let named = false;
 
+
+let playerchoice = null;
+let botrchoice = null;
+
 let playerscore = 0;
 let botscore = 0;
 
@@ -13,6 +17,7 @@ function remiza(){
     $("#result").text('Remiza');
     $("#result").css('color', 'yellow');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Remiza</h4>");
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botrchoice);
     checkscore();
 }
 
@@ -21,6 +26,7 @@ function vyhra(){
     $("#result").text('Vyhral si!');
     $("#result").css('color', 'green');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Vyhra</h4>");
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botrchoice);
 
     playerscore ++;
     $("#player").text(playerscore);
@@ -32,6 +38,7 @@ function prehra(){
     $("#result").text('Prehral si!');
     $("#result").css('color', 'red');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Prehra</h4>");
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botrchoice);
 
     botscore ++;
     $("#bot").text(botscore);
@@ -69,16 +76,19 @@ $(document).ready(function(){
     $("#k").click(function(){
         player = "K";
         console.log('hrac:' + player);
+        playerchoice = "Kamen";
     });
 
     $("#p").click(function(){
         player = "P";
         console.log('hrac:' + player);
+        playerchoice = "Papier";
     });
 
     $("#n").click(function(){
         player = "N";
         console.log('hrac:' + player);
+        playerchoice = "Noznice";
     });
 
     $(".selectbtn").click(function(){
@@ -105,61 +115,64 @@ $(document).ready(function(){
 
             if(comprandomnumber == 0){
                 computer = "K";
+                botrchoice = "Kamen";
             }
             else if(comprandomnumber == 1){
                 computer = "P";
+                botrchoice = "Papier";
             }
             else if(comprandomnumber == 2){
                 computer = "N";
+                botrchoice = "Noznice";
             }
 
             console.log('botko:' + computer);
 
             if(player == "K" && computer == "K"){
                 remiza();
-                $("#values").text(playername +': Kamen, Bot: Kamen');
+                // $("#values").text(playername +': Kamen, Bot: Kamen');
             }
 
             else if(player == "P" && computer == "P"){
                 remiza();
-                $("#values").text(playername +': Papier, Bot: Papier');
+                // $("#values").text(playername +': Papier, Bot: Papier');
             }
 
             else if(player == "N" && computer == "N"){
                 remiza();
-                $("#values").text(playername +': Noznice, Bot: Noznice');
+                // $("#values").text(playername +': Noznice, Bot: Noznice');
             }
 
 
             else if(player == "K" && computer == "N"){
                 vyhra();
-                $("#values").text(playername +': Kamen, Bot: Noznice');
+                // $("#values").text(playername +': Kamen, Bot: Noznice');
             }
 
             else if(player == "P" && computer == "K"){
                 vyhra();
-                $("#values").text(playername +': Papier, Bot: Kamen');
+                // $("#values").text(playername +': Papier, Bot: Kamen');
             }
 
             else if(player == "N" && computer == "P"){
                 vyhra();
-                $("#values").text(playername +': Noznice, Bot: Papier');
+                // $("#values").text(playername +': Noznice, Bot: Papier');
             }
 
 
             else if(player == "P" && computer == "N"){
                 prehra();
-                $("#values").text(playername +': Papier, Bot: Noznice');
+                // $("#values").text(playername +': Papier, Bot: Noznice');
             }
 
             else if(player == "N" && computer == "K"){
                 prehra();
-                $("#values").text(playername +': Noznice, Bot: Kamen');
+                // $("#values").text(playername +': Noznice, Bot: Kamen');
             }
 
             else if(player == "K" && computer == "P"){
                 prehra();
-                $("#values").text(playername +': Kamen, Bot: Papier');
+                // $("#values").text(playername +': Kamen, Bot: Papier');
             }
 
 
