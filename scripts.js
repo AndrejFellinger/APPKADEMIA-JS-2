@@ -130,49 +130,40 @@ $(document).ready(function(){
 
             if(player == "K" && computer == "K"){
                 remiza();
-                // $("#values").text(playername +': Kamen, Bot: Kamen');
             }
 
             else if(player == "P" && computer == "P"){
                 remiza();
-                // $("#values").text(playername +': Papier, Bot: Papier');
             }
 
             else if(player == "N" && computer == "N"){
                 remiza();
-                // $("#values").text(playername +': Noznice, Bot: Noznice');
             }
 
 
             else if(player == "K" && computer == "N"){
                 vyhra();
-                // $("#values").text(playername +': Kamen, Bot: Noznice');
             }
 
             else if(player == "P" && computer == "K"){
                 vyhra();
-                // $("#values").text(playername +': Papier, Bot: Kamen');
             }
 
             else if(player == "N" && computer == "P"){
                 vyhra();
-                // $("#values").text(playername +': Noznice, Bot: Papier');
             }
 
 
             else if(player == "P" && computer == "N"){
                 prehra();
-                // $("#values").text(playername +': Papier, Bot: Noznice');
             }
 
             else if(player == "N" && computer == "K"){
                 prehra();
-                // $("#values").text(playername +': Noznice, Bot: Kamen');
             }
 
             else if(player == "K" && computer == "P"){
                 prehra();
-                // $("#values").text(playername +': Kamen, Bot: Papier');
             }
 
 
