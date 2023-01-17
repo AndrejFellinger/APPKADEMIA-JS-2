@@ -120,41 +120,41 @@ $(document).ready(function(){
         console.log('botko:' + computer);
 
         if(player == "K" && computer == "K"){
-            remiza("Kamen", "Kamen");
+            remiza(player, computer);
         }
 
         else if(player == "P" && computer == "P"){
-            remiza("Papier", "Papier");
+            remiza(player, computer);
         }
 
         else if(player == "N" && computer == "N"){
-            remiza("Noznice", "Noznice");
+            remiza(player, computer);
         }
 
 
         else if(player == "K" && computer == "N"){
-            vyhra("Kamen", "Noznice");
+            vyhra(player, computer);
         }
 
         else if(player == "P" && computer == "K"){
-            vyhra("Papier" ,"Kamen");
+            vyhra(player, computer);
         }
 
         else if(player == "N" && computer == "P"){
-            vyhra("Noznice", "Papier");
+            vyhra(player, computer);
         }
 
 
         else if(player == "P" && computer == "N"){
-            prehra("Papier", "Noznice");
+            prehra(player, computer);
         }
 
         else if(player == "N" && computer == "K"){
-            prehra("Noznice", "Kamen");
+            prehra(player, computer);
         }
 
         else if(player == "K" && computer == "P"){
-            prehra("Kamen", "Papier");
+            prehra(player, computer);
         }
 
         $('#select').css('display', 'none');
