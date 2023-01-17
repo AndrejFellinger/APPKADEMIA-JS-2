@@ -9,33 +9,33 @@ let named = false;
 let playerscore = 0;
 let botscore = 0;
 
-function remiza(){
+function remiza(playerchoice, botchoice){
     console.log('remiza');
     $("#result").text('Remiza');
     $("#result").css('color', 'yellow');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Remiza</h4>");
-    $("#values").text(playername +' :' + player + ',  Bot: '+ computer);
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botchoice);
     checkscore();
 }
 
-function vyhra(){
+function vyhra(playerchoice, botchoice){
     console.log('player WIN');
     $("#result").text('Vyhral si!');
     $("#result").css('color', 'green');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Vyhra</h4>");
-    $("#values").text(playername +' :' + player + ',  Bot: '+ computer);
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botchoice);
 
     playerscore ++;
     $("#player").text(playerscore);
     checkscore();
 }
 
-function prehra(){
+function prehra(playerchoice, botchoice){
     console.log('computer WIN');
     $("#result").text('Prehral si!');
     $("#result").css('color', 'red');
     $("#history").append("<h4>" + counter + '. ' + playername + " - Prehra</h4>");
-    $("#values").text(playername +' :' + player + ',  Bot: '+ computer);
+    $("#values").text(playername +' :' + playerchoice + ',  Bot: '+ botchoice);
 
     botscore ++;
     $("#bot").text(botscore);
@@ -120,41 +120,41 @@ $(document).ready(function(){
         console.log('botko:' + computer);
 
         if(player == "K" && computer == "K"){
-            remiza();
+            remiza("Kamen", "Kamen");
         }
 
         else if(player == "P" && computer == "P"){
-            remiza();
+            remiza("Papier", "Papier");
         }
 
         else if(player == "N" && computer == "N"){
-            remiza();
+            remiza("Noznice", "Noznice");
         }
 
 
         else if(player == "K" && computer == "N"){
-            vyhra();
+            vyhra("Kamen", "Noznice");
         }
 
         else if(player == "P" && computer == "K"){
-            vyhra();
+            vyhra("Papier" ,"Kamen");
         }
 
         else if(player == "N" && computer == "P"){
-            vyhra();
+            vyhra("Noznice", "Papier");
         }
 
 
         else if(player == "P" && computer == "N"){
-            prehra();
+            prehra("Papier", "Noznice");
         }
 
         else if(player == "N" && computer == "K"){
-            prehra();
+            prehra("Noznice", "Kamen");
         }
 
         else if(player == "K" && computer == "P"){
-            prehra();
+            prehra("Kamen", "Papier");
         }
 
         $('#select').css('display', 'none');
